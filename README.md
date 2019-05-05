@@ -1,10 +1,10 @@
-# readme
 # Evaccuracy runcnns
 
 # Introduction
-The evaccuracy is used to run evaccuracy runcnn command in batch manner. 
-
-# How to setup
+The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you colud do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to []
+to run evaccuracy runcnns you should do those prepare works
+1. prepare the dataset 
+2. prepare the configretion file
 ## Directory structure of dataset
 ### Classify:
 ImageNet
