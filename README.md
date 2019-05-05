@@ -137,11 +137,17 @@ for 'evaccuracy' there are three child_options,
 Evaccuracy runcnns will create the following file 
 
 
-1, evaccuracy_analyzed.json
-The parameters of each example 
-2, evaccuracy_analyzed.xls
-The results of evaccuracy classify/detect/segment
-3, evaccuracy_runcnns.json
-4, evaccuracy_runcnns.log
-The results show in the terminal, 
-5, evaccuracy_
+1. evaccuracy_analyzed.json
+```
+this file contain the parameters of each example 
+```
+2. evaccuracy_analyzed.xls
+```
+this file contain the results of evaccuracy classify/detect/segment
+```
+3. evaccuracy_runcnns.json
+4. evaccuracy_runcnns.log
+```
+this file contain the results show in the terminal,
+```
+5. evaccuracy_runcnns_config.json
