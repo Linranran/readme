@@ -98,12 +98,12 @@ optional arguments:
 }
 ~~~
 2. The json file could divide into two part,
-The first part is the global configuration, the second part is local configuration for local examples, when a parameter have been defined in both global and local part, the local part configuration have a high level component
+The first part is the global configuration, the second part is local configuration for local examples, when a parameter have been defined in both global and local part, the local part configuration have a high level component. for the means of these pararemeters, please refere to the doc files[]. 
 The parameters of global part 
 ```
   'run_all_model_names' : default False
   'maps_format' : 8bit or 12bit
-  'make_options' :global_config_set.get('make_options', {})
+  'make_options' :
   'ev_config' :  four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
   'config' : []
   'jobs' : the work jobs 
@@ -124,7 +124,7 @@ The local part configuration is separate for each graph in cnn_tools/example, an
     cali_imgfolder: calibration image folder
     cali_imglist: calibration image list
     maxcnt: sample maxcnt number images for test 
-    'evaccuracy'
+    'evaccuracy': extral option to cover differen task
     
 ```
 for 'evaccuracy' there are three child_options, 
