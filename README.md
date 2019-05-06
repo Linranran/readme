@@ -1,11 +1,12 @@
 # Evaccuracy runcnns
 
 # Introduction
-The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you colud do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to []
+The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to []
 to run evaccuracy runcnns you should do those prepare works
 1. prepare the dataset 
 2. prepare the configretion file
 ## Directory structure of dataset
+the format of those dataset for classify/detect/segment please refer to[].and we have add another part called calibration which is used to verify the results of evaccuracy.
 ### Classify:
 ImageNet
 ~~~
@@ -20,7 +21,7 @@ ImageNet
 * Coco
 * Voc
 ### Segment:
-Cityscape
+* Cityscape
 # How to run 
 ## 1 the command 
 ~~~
