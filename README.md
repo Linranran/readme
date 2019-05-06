@@ -1,12 +1,12 @@
 # Evaccuracy runcnns
 
 # Introduction
-The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to []
+The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to [readme](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/README.md).
 to run evaccuracy runcnns you should do those prepare works
 1. prepare the dataset 
 2. prepare the configretion file
 ## Directory structure of dataset
-the format of those dataset for classify/detect/segment please refer to[].and we have add another part called calibration which is used to verify the results of evaccuracy.
+the format of those dataset for classify/detect/segment please refer to[imagenet](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/imagenet/README.md),[(coco,voc)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/map_calculation/README.md),[(voc,cityscape)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/segmentation/README.md).and we have add another part called calibration which is used to verify the results of evaccuracy.
 ### Classify:
 ImageNet
 ~~~
