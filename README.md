@@ -10,18 +10,66 @@ the format of those dataset for classify/detect/segment please refer to[imagenet
 ### Classify:
 ImageNet
 ~~~
-/parent_folder/
+ImageNet/ILSVRC2012(parent_folder)/
 ├── val
 │   ├── *.JPEG images
-├── test
-│   ├── *.JPEG images
-└── val.txt/test.txt  -> download by synopsys-caffe/data/ilsvrc12/get_ilsvrc_aux.sh
+└── 2012_val.txt/2012_val_cali_2000.txt
 ~~~
 ### Detection:
 * Coco
+~~~
+coco(parent_folder)/
+├── val2017
+├── test2015
+├── val2014
+│   ├── *.JPEG images
+
+|─ voc2007_test_imglist.txt
+~~~
 * Voc
+~~~
+VOCdevkit(parent_folder)/
+├── VOC2007
+│   ├── ImageSets
+│       ├── *.JPEG images
+│   ├── Annotations
+│   ├── SegmentationObject
+│   ├── JPEGImages
+│   ├── Cali
+|─ seg11valid_test.txt/seg11valid_test_cali_100.txt
+~~~
 ### Segment:
 * Cityscape
+~~~
+cityscapes(parent_folder)/
+├── leftImg8bit
+│   ├── *.JPEG images
+├── gtCoarse
+├── ICNet
+|─ icnet_fineval.txt
+~~~
+* voc
+~~~
+VOCdevkit(arent_folder)/
+├── VOC2007
+│   ├── ImageSets
+│   	├── *.JPEG images
+│   ├── Annotations
+│   ├── SegmentationObject
+│   ├── JPEGImages
+│   ├── Cali
+|─ seg11valid_test.txt/ seg11valid_test_cali_100.txt
+~~~
+* CamVid
+~~~
+CamVid(parent_folder)/
+├── train
+├── trainannot
+├── val
+├── valannot
+│   ├── ImageSets
+|─ test.txt/ val.txt
+~~~
 # How to run 
 ## 1 the command 
 ~~~
