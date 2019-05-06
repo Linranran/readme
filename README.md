@@ -1,7 +1,7 @@
 # Evaccuracy runcnns
 
 # Introduction
-The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to [readme](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/README.md).
+The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to [readme](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/README.md).   
 to run evaccuracy runcnns you should do those prepare works
 1. prepare the dataset 
 2. prepare the configretion file
@@ -115,7 +115,7 @@ The parameters of global part
   'target' : install or clean install
   
 ```
-3. The local part 
+3. The local part    
 The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
 ```
     'dumpdir': default is current path 
