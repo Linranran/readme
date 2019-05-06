@@ -1,12 +1,12 @@
 # Evaccuracy runcnns
 
 # Introduction
-The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to [readme](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/README.md).   
+The evaccuracy is used to run evaccuracy runcnn command and do the evaccuracy in batch manner. you could do evaccuracy runcnn on a example graph and then do the evaccuracy classify/detect/segment by the predefined config file. for the evacccracy runcnn/classify/detect/segment you could reference to  [readme](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/README.md).   
 to run evaccuracy runcnns you should do those prepare works
 1. prepare the dataset 
 2. prepare the configretion file
 ## Directory structure of dataset
-the format of those dataset for classify/detect/segment please refer to[imagenet](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/imagenet/README.md),[(coco,voc)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/map_calculation/README.md),[(voc,cityscape)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/segmentation/README.md).and we have add another part called calibration which is used to verify the results of evaccuracy.
+the format of those dataset for classify/detect/segment please refer to [imagenet](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/imagenet/README.md),[(coco,voc)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/map_calculation/README.md),[(voc,cityscape)](https://gitsnps.internal.synopsys.com/dwc_ev/cnn_tools/blob/dev_accuracy/evgencnn/scripts/evaccuracy/segmentation/README.md).    we have add another part called calibration which is used to verify the results of evaccuracy.
 ### Classify:
 ImageNet
 ~~~
@@ -24,7 +24,7 @@ coco(parent_folder)/
 ├── val2014
 │   ├── *.JPEG images
 
-|─ voc2007_test_imglist.txt
+|─ cocoval2017.txt
 ~~~
 * Voc
 ~~~
@@ -36,7 +36,7 @@ VOCdevkit(parent_folder)/
 │   ├── SegmentationObject
 │   ├── JPEGImages
 │   ├── Cali
-|─ seg11valid_test.txt/seg11valid_test_cali_100.txt
+|─ voc2007_test_imglist.txt/ voc2007_cali_500.txt
 ~~~
 ### Segment:
 * Cityscape
@@ -82,10 +82,60 @@ optional arguments:
 --config CONFIG  Example runner configuration file in json format
 --output OUTPUT  Path of folder to save cnn runner results
 ~~~
-
-
+* the `config` means the configration file that predefined in the input json file. the json file contain the parameters about the evaccuracy runcnn and evaccuracy classify/segment/detect   
+* the `output` is the output folder of evaccuracy runcnns, it contains the results of ecaccuracy runcnn and evaccuracy classify/detect/segment.
 ## 2 the format of input json file 
-1. The json file contain the configuration information that guide the evaccuracy runcnn，the below is a simple example of json file
+The json file contain the configuration information that guide the evaccuracy runcnn and evaccuracy classify/detect/segment，and we will give the format of json file detailly. The json file could divide into two parts, The first part is the global configuration, the second part is local configuration for local examples, when a parameter have been defined in both global and local part, the local part configuration have a high level component. for the means of these pararemeters, please refere to the doc files[]. 
+1. The parameters of global part      
+the gloabal part have the following parameters:
+* **run_all_model_names**: the option is used to contral whether run all the model exist in example/configs
+  - **type**: string type, choose False or True and the default is False
+* **maps_format**: this parameters decide how much bit dumps the evaccuracy runcnns will done, and we only support 8 and 12 bit now.
+  - **type**:: list type, it should be like ["8bit"], ["12bit"] or ["8bit", "12bit"] 
+* **make_options**: 
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+* **ev_config**: there are four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+* **jobs**: this section has following options
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+* **fixed_dumpdir_root**: this section has following options
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+* **evgencnn_options**: this section has following options
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+* **target**: this section has following options
+  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+```
+  'run_all_model_names' : default False
+  'maps_format' : 8bit or 12bit
+  'make_options' :
+  'ev_config' :  four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
+  'config' : []
+  'jobs' : the work jobs 
+  'fixed_dumpdir_root' :
+  'cnn_dataset_root' : the root combine with the path in local is the complete dataset path
+  'pre_clean' : default is False
+  'evgencnn_options' :
+  'target' : install or clean install
+  
+```
+3. The local part    
+The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
+```
+    'dumpdir': default is current path 
+    'model_name': different model in example/configs
+    'imgfolder'": "VOCdevkit/VOC2007 
+    'imglist": "VOCdevkit/voc2007_test_imglist.txt
+    'cali_imgfolder': calibration image folder
+    'cali_imglist': calibration image list
+    'maxcn't: sample maxcnt number images for test 
+    'evaccuracy': extral option to cover differen task
+    
+```
+for 'evaccuracy' there are three child_options, 
+* type: classify/detect/segment
+* config_file: you could found the config file in the evgencnn/scripts/evaccuracy/imagenet etc. 
+* extra_options: for evaccuracy classify/detect/segment, because of they are differents task and the commands is little differen ,we use the exa_optio ns to cover the difference. when run evaccuracy classify/segment the  exa_options is null and for evaccuracy detect, you should add ext ral parameters
+the below is a simple example of json file
 ~~~
 {
     "global_config" : {
@@ -146,41 +196,6 @@ optional arguments:
     }
 }
 ~~~
-2. The json file could divide into two part,
-The first part is the global configuration, the second part is local configuration for local examples, when a parameter have been defined in both global and local part, the local part configuration have a high level component. for the means of these pararemeters, please refere to the doc files[]. 
-The parameters of global part 
-```
-  'run_all_model_names' : default False
-  'maps_format' : 8bit or 12bit
-  'make_options' :
-  'ev_config' :  four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
-  'config' : []
-  'jobs' : the work jobs 
-  'fixed_dumpdir_root' :
-  'cnn_dataset_root' : the root combine with the path in local is the complete dataset path
-  'pre_clean' : default is False
-  'evgencnn_options' :
-  'target' : install or clean install
-  
-```
-3. The local part    
-The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
-```
-    'dumpdir': default is current path 
-    'model_name': different model in example/configs
-    'imgfolder'": "VOCdevkit/VOC2007 
-    'imglist": "VOCdevkit/voc2007_test_imglist.txt
-    'cali_imgfolder': calibration image folder
-    'cali_imglist': calibration image list
-    'maxcn't: sample maxcnt number images for test 
-    'evaccuracy': extral option to cover differen task
-    
-```
-for 'evaccuracy' there are three child_options, 
-* type: classify/detect/segment
-* config_file: you could found the config file in the evgencnn/scripts/evaccuracy/imagenet etc. 
-* extra_options: for evaccuracy classify/detect/segment, because of they are differents task and the commands is little differen ,we use the exa_optio ns to cover the difference. when run evaccuracy classify/segment the  exa_options is null and for evaccuracy detect, you should add ext ral parameters
-
  
 # Command Output
 Evaccuracy runcnns will create the following file 
