@@ -112,28 +112,28 @@ The parameters of global part
   'cnn_dataset_root' : the root combine with the path in local is the complete dataset path
   'pre_clean' : default is False
   'evgencnn_options' :
-  'target' : install or 'clean install'
+  'target' : install or clean install
   
 ```
 3. The local part 
 The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
 ```
-    dumpdir: default is current path 
-    model_name: different model in example/configs
-    imgfolder": "VOCdevkit/VOC2007
-    imglist": "VOCdevkit/voc2007_test_imglist.txt
-    cali_imgfolder: calibration image folder
-    cali_imglist: calibration image list
-    maxcnt: sample maxcnt number images for test 
+    'dumpdir': default is current path 
+    'model_name': different model in example/configs
+    'imgfolder'": "VOCdevkit/VOC2007 
+    'imglist": "VOCdevkit/voc2007_test_imglist.txt
+    'cali_imgfolder': calibration image folder
+    'cali_imglist': calibration image list
+    'maxcn't: sample maxcnt number images for test 
     'evaccuracy': extral option to cover differen task
     
 ```
 for 'evaccuracy' there are three child_options, 
 * type: classify/detect/segment
-* config_file": you could found the config file in the evgencnn/scripts/evaccuracy/imagenet etc. 
-* extra_options": for evaccuracy classify/detect/segment, because of they are differents task and the commands is little differen ,we use the exa_options to cover the difference. when run evaccuracy classify/segment the  exa_options is null and for evaccuracy detect, you should add extral parameters
+* config_file: you could found the config file in the evgencnn/scripts/evaccuracy/imagenet etc. 
+* extra_options: for evaccuracy classify/detect/segment, because of they are differents task and the commands is little differen ,we use the exa_optio ns to cover the difference. when run evaccuracy classify/segment the  exa_options is null and for evaccuracy detect, you should add ext ral parameters
 
-
+ 
 # Command Output
 Evaccuracy runcnns will create the following file 
 
