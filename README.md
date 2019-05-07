@@ -100,7 +100,7 @@ the gloabal part have the following parameters:
   - **type**: int type
 * **fixed_dumpdir_root**: the root path of fixed_dump
   - **type**: string type
-* **evgencnn_options**: we provide two kinds options, tofinno and toronto. for toronto you should add 
+* **evgencnn_options**: we provide two kinds options, tofinno and toronto. for toronto you should add extral parameters
   - **type**: string type, {"tofino": "", "toronto": "--acc_shift 0 --Zweight_scale true --Zblob_scale true"},
 * **target**: build option, clean-install or install
   - **type**: string type, 
@@ -121,16 +121,29 @@ the gloabal part have the following parameters:
   
 ```
 2. The local part       
-The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
-```
-    'dumpdir': default is current path 
-    'model_name': different model in example/configs
-    'imgfolder'": "VOCdevkit/VOC2007 
-    'imglist": "VOCdevkit/voc2007_test_imglist.txt
-    'cali_imgfolder': calibration image folder
-    'cali_imglist': calibration image list
-    'maxcn't: sample maxcnt number images for test 
-    'evaccuracy': extral option to cover differen task
+The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.the local part have the following parameters:
+* **dumpdir**: the dumped file will save in the dumpdir folde
+  - **type**: string type
+* **model_name**:  different model in example/configs. this option has the same function will run_all_model_names in the global part.
+  - **type**:: list type,  ["defualt", "compress"] etc.
+* **imgfolder**: the path for test dataset 
+  - **type**: string type
+* **imglist**: the path for test dataset lables
+  - **type**: string type
+* **cali_imgfolder**: the path for calibraton dataset 
+  - **type**: string type 
+* **cali_imglist**: the path for calibraton dataset lables
+  - **type**: string type 
+* **maxcnt**: sample maxcnt number images for test to accalerate the inference process.
+  - **type**: int type 
+* **evaccuracy**: after run `evaccuracy runcnn`, we could get the demped files. and the we will use `evaccuracy classify/detect/segment` to test the accuracy of the dumped file. and the `evaccuracy` is an extral option to cover differen task, because of the different input parameters for different task (`evaccuracy runcnn/classify/detect/segment`), we use the option cover the difference of different task. there are three child option in `evaccracy` option.
+  - **type**: define which kind of task you want to do (classify/detect/segment )   
+  -- **type**: string type, "classify", "detect" or "segment"
+  - **config_file**: the config_file is the predefine parameters for differen graphs and you could found the config file in the evgencnn/scripts/evaccuracy/imagenet etc.   
+  -- **type**: string type, like "vgg.cfg"
+  - **extra_options**: for `evaccuracy classify/detect/segment`, because of they are differents task and the commands is little differen ,we use the exa_options to cover the difference. when run evaccuracy classify/segment the  extra_options is null and for evaccuracy detect, you should add extral parameters   
+   -- **type**: string type, like "--eval_type voc2007 --dataset_type test --min_overlap 0.5"
+  
     
 ```
 for 'evaccuracy' there are three child_options, 
