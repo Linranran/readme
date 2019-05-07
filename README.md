@@ -90,35 +90,37 @@ The json file contain the configuration information that guide the evaccuracy ru
 the gloabal part have the following parameters:
 * **run_all_model_names**: the option is used to contral whether run all the model exist in example/configs
   - **type**: string type, choose False or True and the default is False
-* **maps_format**: this parameters decide how much bit dumps the evaccuracy runcnns will done, and we only support 8 and 12 bit now.
+* **maps_format**: this parameters decide how much bit-dumps the evaccuracy runcnns will done, and we only support 8 and 12 bit now.
   - **type**:: list type, it should be like ["8bit"], ["12bit"] or ["8bit", "12bit"] 
 * **make_options**: 
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
-* **ev_config**: there are four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
-* **jobs**: this section has following options
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
-* **fixed_dumpdir_root**: this section has following options
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
-* **evgencnn_options**: this section has following options
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
-* **target**: this section has following options
-  - **type**: string type, which support only `ssd`, `yolov2`, `yolov3`
+  - **type**: 
+* **ev_config**: there are four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG, run_haps
+  - **type**: list type, you should give a list like ["ev_native", "host_fixed", 0, false]
+* **jobs**: how many jobs
+  - **type**: int type
+* **fixed_dumpdir_root**: the root path of fixed_dump
+  - **type**: string type
+* **evgencnn_options**: we provide two kinds options, tofinno and toronto. for toronto you should add 
+  - **type**: string type, {"tofino": "", "toronto": "--acc_shift 0 --Zweight_scale true --Zblob_scale true"},
+* **target**: build option, clean-install or install
+  - **type**: string type, 
+ the below is a global config example
 ```
-  'run_all_model_names' : default False
-  'maps_format' : 8bit or 12bit
-  'make_options' :
-  'ev_config' :  four option, they are EVSS_CFG, CNN_ABSTRACTION,EVSS_DBG,
-  'config' : []
-  'jobs' : the work jobs 
-  'fixed_dumpdir_root' :
-  'cnn_dataset_root' : the root combine with the path in local is the complete dataset path
-  'pre_clean' : default is False
-  'evgencnn_options' :
-  'target' : install or clean install
+ "global_config" : {
+        "run_all_model_names": false, 
+        "maps_format": ["12bit", "8bit"], 
+        "evgencnn_options": {"tofino": "", "toronto": "--acc_shift 0 --Zweight_scale true --Zblob_scale true"},
+        "ev_config":
+            ["ev_native", "host_fixed", 0, false]
+        ], 
+        "config": [], 
+        "jobs": 10, 
+        "cnn_dataset_root": "/slowfs/us01dwt2p832/datasets",
+        "target": "clean install"
+    },
   
 ```
-3. The local part    
+2. The local part       
 The local part configuration is separate for each graph in cnn_tools/example, and you could add some other parameters combine with gloable parameters to run evaccuracy runcnn.
 ```
     'dumpdir': default is current path 
